@@ -2,20 +2,33 @@ import cv2
 import numpy as np
 
 #the color that is used to mark the calculated points
-color = [0,0,0]
+mark = [0,0,0]
+bg = [255,255,255]
+cross = [0,255,0]
+unit = [255,0,0]
 
-def draw(coords,_size):
+def draw(coords,_size,_scale):
     #create image
     img = np.zeros((_size, _size, 3), np.uint8)
-    img[:] = [255,255,255]
+    img[:] = bg
+    
+    #cross
+    cv2.arrowedLine(img, (0,int(_size/2)), (_size,int(_size/2)), cross,1,8,0,0.02)
+    cv2.arrowedLine(img, (int(_size/2),0), (int(_size/2),_size), cross,1,8,0,0.02)
 
+    #unit
+    cv2.line(img, (0,int(_size/2)+_scale), (_size,int(_size/2)+_scale), unit)
+    cv2.line(img, (0,int(_size/2)-_scale), (_size,int(_size/2)-_scale), unit)
+    cv2.line(img, (int(_size/2)+_scale,0), (int(_size/2)+_scale,_size), unit)
+    cv2.line(img, (int(_size/2)-_scale,0), (int(_size/2)-_scale,_size), unit)
+    
     #offset to place the graph in the middle
     offset = (int(_size/2), int(_size/2))
 
     #draw
     for pair in coords:
         #!!!(y,x)!!!
-        img[int(pair[0] + offset[0]), int(pair[1] + offset[1])] = color
+        img[int(pair[0] + offset[0]), int(pair[1] + offset[1])] = mark
         #upside down flipped
         flipped = cv2.flip(img, 0)
         

@@ -2,35 +2,34 @@
 
 import draw_func
 from PIL import Image
+import math
 
-scale = 50 #pixel per unit
+scale = 100 #pixel per unit
 size = 10    #units calculated
 
 def calculate(func):
-    _maxsize = 0
-    #write into file to execute string
-    with open("./func.py", "w") as f:
-        f.write("import math\n\ndef f(x):\n    return {}".format(func))
-        f.close()
-
-    #import and run
-    try:
-        import func
-    except:
-        print("Error importing custom function! Missing file or syntax error?")
+    _ymax = 0
     result = []
     for xpixel in range(-size*scale, size*scale):
         try:
             x = xpixel / scale
-            y = func.f(x)
-        except :
-            print("Syntax error! Remember to use correct Python 3 math syntax!")
+            y = eval(func, {"x" : x, "math" : math, "abs":abs})
+        except:
+            print("Syntax or math error!")
+        ypixel = y*scale
         result.append((y*scale, xpixel))
-    return(result)
+    if(abs(ypixel*2)+15 > _ymax):
+        _ymax = int(abs(ypixel*2)+15)
+        
+    return(result,_ymax)
 
+result, ymax = calculate(input("f(x)="))
+if(ymax > len(result)):
+    draw_func.draw(result, ymax, scale)
 
-result = calculate(input("f(x)="))
-draw_func.draw(result, len(result))
+else:
+    draw_func.draw(result, len(result),scale)
+    
 
 if(True):
     Image.open("./func_graph.png").show()
