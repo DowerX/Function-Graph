@@ -15,7 +15,7 @@ def draw(coords,_size):
     #draw
     for pair in coords:
         #!!!(y,x)!!!
-        img[(pair[0] + offset[0]), (pair[1] + offset[1])] = color
+        img[int(pair[0] + offset[0]), int(pair[1] + offset[1])] = color
         #upside down flipped
         flipped = cv2.flip(img, 0)
         
