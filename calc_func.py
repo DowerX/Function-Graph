@@ -3,8 +3,8 @@
 import draw_func
 from PIL import Image
 
-scale = 1000          #pixel per unit
-size = 2
+scale = 50 #pixel per unit
+size = 10    #units calculated
 
 def calculate(func):
     _maxsize = 0
@@ -26,16 +26,11 @@ def calculate(func):
         except :
             print("Syntax error! Remember to use correct Python 3 math syntax!")
         result.append((y*scale, xpixel))
-        if(y > _maxsize):
-            _maxsize = int((y*scale*2) + 2)
-            print("IN {}".format(int((y*scale*2) + 2)))
-    
-    return(result, _maxsize)
+    return(result)
 
 
-result, maxsize = calculate(input("f(x)="))
-print(maxsize)
-draw_func.draw(result, maxsize)
+result = calculate(input("f(x)="))
+draw_func.draw(result, len(result))
 
 if(True):
     Image.open("./func_graph.png").show()
