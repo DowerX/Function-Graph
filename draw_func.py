@@ -26,7 +26,7 @@ def draw(coords,res):
         screen.fill(white)
 
         #draw
-        pygame.draw.lines(screen, black, False, coords, 2)
+        pygame.draw.aalines(screen, black, False, coords, 2)
 
         #update the screen
         pygame.display.update()

@@ -7,7 +7,7 @@ def calculate(func):
     _maxsize = (100 * 2)+ 2
     #write into file to execute string
     with open("./func.py", "w") as f:
-        f.write("def f(x):\n    return {}".format(func))
+        f.write("import math\n\ndef f(x):\n    return {}".format(func))
         f.close()
 
     #import and run
