@@ -14,7 +14,7 @@ def draw(coords,_size,_scale):
     
     #cross
     cv2.arrowedLine(img, (0,int(_size/2)), (_size,int(_size/2)), cross,1,8,0,0.02)
-    cv2.arrowedLine(img, (int(_size/2),0), (int(_size/2),_size), cross,1,8,0,0.02)
+    cv2.arrowedLine(img,(int(_size/2),_size),(int(_size/2),0), cross,1,8,0,0.02)
 
     #unit
     cv2.line(img, (0,int(_size/2)+_scale), (_size,int(_size/2)+_scale), unit)
