@@ -1,21 +1,23 @@
+#coordinates in OpenCV format! => (y, x)
+
 import draw_func
 from PIL import Image
 
-size = 20
+size = 10
 
 def calculate(func):
-    _maxsize = (100 * 2)+ 1
+    _maxsize = (100 * 2)+ 2
     #write into file to execute string
     with open("./func.py", "w") as f:
         f.write("def f(x):\n    return {}".format(func))
         f.close()
 
-    #imoport and run
+    #import and run
     import func
     result = []
     for x in range(-size, size+1):
         y = func.f(x)
-        result.append((x, y))
+        result.append((y, x))
         if(y > _maxsize):
             _maxsize = (y*2) + 2
     
@@ -24,6 +26,5 @@ def calculate(func):
 result, maxsize = calculate(input("f(x)="))
 draw_func.draw(result, maxsize)
 
-if(False):
-    img = Image.open("./func_graph.png")
-    img.show()
+if(True):
+    Image.open("./func_graph.png").show()
