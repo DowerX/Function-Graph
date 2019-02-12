@@ -11,10 +11,16 @@ def calculate(func):
         f.close()
 
     #import and run
-    import func
+    try:
+        import func
+    except:
+        print("Error importing func.py!")
     result = []
     for x in range(-size, size+1):
-        y = func.f(x)
+        try:
+            y = func.f(x)
+        except:
+            print("Syntax error!")
         result.append((x + (res[0]/2) , -y + (res[1]/2)))
         if(y > _maxsize):
             _maxsize = (y*2) + 2
