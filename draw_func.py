@@ -27,10 +27,6 @@ def draw(coords,_size,_scale):
 
     #draw
     for pair in coords:
-        #!!!(y,x)!!!
-        img[int(pair[0] + offset[0]), int(pair[1] + offset[1])] = mark
-        #upside down flipped
-        flipped = cv2.flip(img, 0)
-        
+        img[int(pair[0] + offset[0]), int(pair[1] + offset[1])] = mark       
     #write
-    cv2.imwrite("func_graph.png", flipped)
+    cv2.imwrite("func_graph.png", img)

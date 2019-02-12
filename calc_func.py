@@ -1,11 +1,9 @@
-#coordinates in OpenCV format! => (y, x)
-
 import draw_func
 from PIL import Image
 import math
 
-scale = 100 #pixel per unit
-size = 10    #units calculated
+scale = 50  #pixel per unit
+size = 2    #units calculated
 
 def calculate(func):
     _ymax = 0
@@ -16,8 +14,8 @@ def calculate(func):
             y = eval(func, {"x" : x, "math" : math, "abs":abs})
         except:
             print("Syntax or math error!")
-        ypixel = y*scale
-        result.append((y*scale, xpixel))
+        ypixel = -y*scale
+        result.append((ypixel, xpixel))
     if(abs(ypixel*2)+15 > _ymax):
         _ymax = int(abs(ypixel*2)+15)
         
@@ -30,6 +28,6 @@ if(ymax > len(result)):
 else:
     draw_func.draw(result, len(result),scale)
     
-
+#open image if ready
 if(True):
     Image.open("./func_graph.png").show()
