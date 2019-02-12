@@ -112,3 +112,8 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+func.py
+func_graph.png
+func.py
+func.py
+func_graph.png
