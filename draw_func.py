@@ -1,7 +1,32 @@
-import matplotlib.pyplot as plt
+import pygame
 import numpy as np
+import sys
 
-def draw(coords):
-    plt.plot(coords, color="black", label="f(x)")
-    plt.grid(True)
-    plt.show()
+white = (255,255,255)
+black = (0,0,0)
+
+
+def init(res):
+    #init pygame
+    pygame.init()
+    screen = pygame.display.set_mode(res)
+    return(screen)
+
+def draw(coords,res):
+    screen = init(res)
+    
+    while(True):
+        
+        #check for quit events
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                pygame.quit()
+                sys.exit()
+        #clear
+        screen.fill(white)
+
+        #draw
+        pygame.draw.lines(screen, black, False, coords, 2)
+
+        #update the screen
+        pygame.display.update()
